@@ -51,7 +51,7 @@
         /* --- Navigation --- */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 1rem 5%;
+            padding: 0.8rem 5%; /* Slightly reduced padding to balance the larger logo */
             background: rgba(5, 11, 20, 0.8);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -59,22 +59,22 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        /* Updated Logo Styles */
+        /* --- UPDATED LOGO STYLES --- */
         .logo-container {
             display: flex;
             align-items: center;
         }
         
         .logo-container img { 
-            height: 50px; 
+            height: 110px; /* INCREASED FROM 50px to 110px */
             width: auto; 
             border-radius: 6px; 
-            /* Since the logo has a white background, adding a subtle border helps it frame nicely on the dark site */
             border: 1px solid rgba(255,255,255,0.1); 
+            background-color: #ffffff; /* Ensures the background behind the logo stays crisp */
         }
         
         .nav-links { display: flex; gap: 3rem; }
-        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-silver); letter-spacing: 0.5px; }
+        .nav-links a { font-size: 0.95rem; font-weight: 500; color: var(--text-silver); letter-spacing: 0.5px; }
         .nav-links a:hover { color: var(--accent-glow); }
         
         /* Premium CTA Button */
@@ -242,7 +242,7 @@
     <!-- Navigation -->
     <nav>
         <div class="logo-container">
-            <!-- UPDATED IMAGE SOURCE HERE -->
+            <!-- Image tag references your exact file name -->
             <img src="image_af0b47.jpg" alt="GridScoop Logo">
         </div>
         <div class="nav-links">
