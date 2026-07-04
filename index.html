@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GridScoop | Digital Shelf Intelligence & Consulting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Premium Color Palette & Variables --- */
+        :root {
+            --bg-deep: #050B14;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --text-white: #FFFFFF;
+            --text-silver: #A0AABF;
+            --accent-teal: #008B8B;
+            --accent-glow: #00E5FF;
+            --accent-purple: #4F46E5;
+            --font-main: 'Inter', sans-serif;
+        }
+
+        /* --- Global Reset & Typography --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-main); }
+        body { background-color: var(--bg-deep); color: var(--text-white); line-height: 1.6; overflow-x: hidden; }
+        a { text-decoration: none; color: var(--text-white); transition: all 0.3s ease; }
+        
+        /* --- Background Glow Effects --- */
+        .glow-orb-1, .glow-orb-2 {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: pulse 8s infinite alternate;
+        }
+        .glow-orb-1 {
+            top: -10%; left: -10%;
+            width: 50vw; height: 50vw;
+            background: radial-gradient(circle, var(--accent-teal), transparent 70%);
+        }
+        .glow-orb-2 {
+            top: 40%; right: -10%;
+            width: 40vw; height: 40vw;
+            background: radial-gradient(circle, var(--accent-purple), transparent 70%);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            100% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        /* --- Navigation --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 5%;
+            background: rgba(5, 11, 20, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Updated Logo Styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-container img { 
+            height: 50px; 
+            width: auto; 
+            border-radius: 6px; 
+            /* Since the logo has a white background, adding a subtle border helps it frame nicely on the dark site */
+            border: 1px solid rgba(255,255,255,0.1); 
+        }
+        
+        .nav-links { display: flex; gap: 3rem; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-silver); letter-spacing: 0.5px; }
+        .nav-links a:hover { color: var(--accent-glow); }
+        
+        /* Premium CTA Button */
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent-teal) 0%, #005f5f 100%);
+            color: var(--text-white);
+            padding: 0.8rem 1.8rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 139, 139, 0.3);
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            box-shadow: 0 6px 20px rgba(0, 229, 255, 0.5);
+            transform: translateY(-2px);
+            border-color: var(--accent-glow);
+        }
+
+        /* --- Hero Section with CSS Grid Pattern --- */
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 10rem 5% 8rem;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center center;
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            color: var(--accent-glow);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+        .hero h1 {
+            font-size: 4.5rem; font-weight: 700; margin-bottom: 1.5rem;
+            line-height: 1.1; letter-spacing: -1.5px;
+            background: linear-gradient(to right, #FFFFFF, #A0AABF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            color: var(--text-silver); font-size: 1.25rem; font-weight: 300;
+            max-width: 800px; margin: 0 auto 3rem;
+        }
+        .hero-ctas { display: flex; justify-content: center; gap: 1.5rem; }
+        .secondary-cta {
+            background: rgba(255,255,255,0.05); color: var(--text-white);
+            border: 1px solid rgba(255,255,255,0.1); padding: 0.8rem 1.8rem;
+            border-radius: 4px; font-weight: 600; transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        .secondary-cta:hover { background: rgba(255,255,255,0.1); border-color: var(--text-white); }
+
+        /* --- Revenue Enablement & Capabilities Section --- */
+        .capabilities {
+            padding: 8rem 5%;
+            position: relative;
+        }
+        .section-header { text-align: center; margin-bottom: 5rem; }
+        .section-header h2 { font-size: 3rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: -0.5px; }
+        .section-header p { color: var(--text-silver); font-size: 1.2rem; max-width: 600px; margin: 0 auto; }
+
+        /* Glassmorphism Grid */
+        .glass-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem; max-width: 1200px; margin: 0 auto;
+        }
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 3rem;
+            border-radius: 12px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card::before {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: left 0.7s ease;
+        }
+        .glass-card:hover::before { left: 100%; }
+        .glass-card:hover { transform: translateY(-10px); border-color: var(--accent-glow); }
+        
+        .card-icon {
+            font-size: 2rem; color: var(--accent-glow); margin-bottom: 1.5rem;
+            display: inline-block; padding: 1rem; background: rgba(0, 229, 255, 0.05); border-radius: 8px;
+        }
+        .glass-card h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 600; }
+        .glass-card p { color: var(--text-silver); margin-bottom: 2rem; font-weight: 300; font-size: 1rem; line-height: 1.7; }
+        .glass-card a { color: var(--accent-glow); font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; }
+        .glass-card a:hover { gap: 0.8rem; }
+
+        /* --- Split Section: Consulting meets Analytics --- */
+        .split-section {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+            max-width: 1200px; margin: 8rem auto; padding: 0 5%; align-items: center;
+        }
+        .split-content h2 { font-size: 2.8rem; line-height: 1.1; margin-bottom: 1.5rem; }
+        .split-content p { color: var(--text-silver); font-size: 1.1rem; margin-bottom: 2rem; font-weight: 300;}
+        .check-list { list-style: none; }
+        .check-list li {
+            margin-bottom: 1.2rem; display: flex; align-items: center; gap: 1rem;
+            color: var(--text-white); font-weight: 500;
+        }
+        .check-list li::before {
+            content: '✓'; color: var(--bg-deep); background: var(--accent-glow);
+            width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; font-size: 0.8rem; font-weight: bold;
+        }
+        
+        /* Interactive Abstract Graphic */
+        .abstract-graphic {
+            position: relative; width: 100%; height: 450px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(255,255,255,0.05));
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.5), 0 20px 40px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+        /* Simulated UI Elements */
+        .ui-element { position: absolute; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; backdrop-filter: blur(4px); }
+        .ui-1 { width: 60%; height: 40px; top: 10%; left: 10%; }
+        .ui-2 { width: 40%; height: 120px; top: 30%; left: 10%; }
+        .ui-3 { width: 35%; height: 200px; bottom: 10%; right: 10%; background: linear-gradient(to top, rgba(0, 139, 139, 0.2), transparent);}
+
+        /* --- Footer CTA --- */
+        .footer-cta {
+            background: linear-gradient(to right, #030711, #0a1426);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center; padding: 8rem 5%; position: relative; overflow: hidden;
+        }
+        .footer-cta h2 { font-size: 3.5rem; margin-bottom: 1.5rem; letter-spacing: -1px; }
+        .footer-cta p { font-size: 1.25rem; color: var(--text-silver); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;}
+        
+        @media (max-width: 900px) {
+            .split-section { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glows -->
+    <div class="glow-orb-1"></div>
+    <div class="glow-orb-2"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo-container">
+            <!-- UPDATED IMAGE SOURCE HERE -->
+            <img src="image_af0b47.jpg" alt="GridScoop Logo">
+        </div>
+        <div class="nav-links">
+            <a href="#intelligence">Digital Shelf Intelligence</a>
+            <a href="#analytics">SaaS Analytics</a>
+            <a href="#consulting">Strategic Consulting</a>
+            <a href="#daas">Enterprise DaaS</a>
+        </div>
+        <button class="cta-button">Client Login</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <span class="hero-badge">Revenue Enablement Platform</span>
+        <h1>Engineering Ecommerce Data into Market Dominance.</h1>
+        <p>We are the intelligence engine for global commerce. GridScoop equips Fortune 500 strategy, pricing, and revenue teams with the analytics, DaaS, and executive consulting required to win the digital shelf.</p>
+        <div class="hero-ctas">
+            <button class="cta-button">Request an Intelligence Briefing</button>
+            <a href="#intelligence" class="secondary-cta">Explore Capabilities</a>
+        </div>
+    </section>
+
+    <!-- Split Section: The "Consulting + Analytics" pitch -->
+    <section class="split-section" id="intelligence">
+        <div class="split-content">
+            <h2>Dashboards don't drive revenue. Intelligence does.</h2>
+            <p>Traditional market research provides lagging indicators. Basic scraping tools provide unstructured noise. GridScoop is built for the enterprise—combining the rigorous analytical frameworks of top-tier management consulting with the speed of modern data engineering.</p>
+            <ul class="check-list">
+                <li>Identify competitive assortment gaps in real-time.</li>
+                <li>Monitor global MAP compliance and pricing dynamics.</li>
+                <li>Pipe structured DaaS directly into your Snowflake/Databricks.</li>
+                <li>Leverage our expert consultants to translate data into strategy.</li>
+            </ul>
+        </div>
+        <div class="abstract-graphic">
+            <div class="ui-element ui-1"></div>
+            <div class="ui-element ui-2"></div>
+            <div class="ui-element ui-3"></div>
+            <p style="color: var(--accent-glow); font-weight: 600; letter-spacing: 2px; position: absolute; z-index: 10;">[ REAL-TIME COMMERCE GRID ]</p>
+        </div>
+    </section>
+
+    <!-- Core Capabilities (Glassmorphism Cards) -->
+    <section class="capabilities" id="analytics">
+        <div class="section-header">
+            <h2>Our Intelligence Ecosystem</h2>
+            <p>From raw data extraction to boardroom strategy. We offer flexible delivery models tailored to your commercial teams.</p>
+        </div>
+        
+        <div class="glass-grid">
+            <!-- Card 1 -->
+            <div class="glass-card">
+                <div class="card-icon">📈</div>
+                <h3>Digital Shelf Analytics</h3>
+                <p>Equip your category managers with an intuitive SaaS platform offering real-time visibility into competitive pricing, share of assortment, and global search rankings.</p>
+                <a href="#">Explore SaaS Platform <span>&rarr;</span></a>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="glass-card" id="daas">
+                <div class="card-icon">⚡</div>
+                <h3>Enterprise DaaS</h3>
+                <p>Empower your internal data science and engineering teams. Receive highly structured, normalized ecommerce data via robust APIs and automated flat file feeds.</p>
+                <a href="#">View Data Architecture <span>&rarr;</span></a>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="glass-card" id="consulting">
+                <div class="card-icon">♟️</div>
+                <h3>Strategic Advisory</h3>
+                <p>Partner with our industry experts. We provide bespoke management consulting engagements utilizing our proprietary data to answer complex revenue and category questions.</p>
+                <a href="#">Discover Consulting <span>&rarr;</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- High-Impact Footer CTA -->
+    <section class="footer-cta">
+        <h2>Stop guessing. Start knowing.</h2>
+        <p>Join the global leaders, consulting firms, and private equity investors who trust GridScoop to turn market noise into market share.</p>
+        <button class="cta-button" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Schedule a Strategic Consultation</button>
+    </section>
+
+</body>
+</html>
